@@ -1,0 +1,15 @@
+pip install numpy=1.24
+pip install python=3.10
+
+
+pytorch=2.6 CUDA=11.8
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+
+pip install opencv-python==4.7.0.72
+
+pip install matplotlib==3.7
+
+pip install pandas==1.5.3
+
+pip install scikit-learn==1.2.2
