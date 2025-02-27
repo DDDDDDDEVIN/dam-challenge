@@ -104,14 +104,11 @@ class DevinMengTuner:
         
         self._check_checkpoint()
         
-        if self.model_name == 'XGB':
-            self._xgb_tune()
-            return
         if self.model_name == 'CB':
-            self._cb_tune()
+            print('CatBoost is not yet compatiable with DevinMeng Tuner, try another model')
             return
         if self.model_name == 'LB':
-            self._lb_tune()
+            print('CatBoost is not yet compatiable with DevinMeng Tuner, try another model')
             return
 
         if self.tuner_type == 'Grid':
