@@ -104,14 +104,11 @@ class DevinMengTuner:
         
         self._check_checkpoint()
         
-        if self.model_name == 'XGB':
-            self._xgb_tune()
-            return
         if self.model_name == 'CB':
-            self._cb_tune()
+            print('CatBoost is not yet compatiable with DevinMeng Tuner, try another model')
             return
         if self.model_name == 'LB':
-            self._lb_tune()
+            print('CatBoost is not yet compatiable with DevinMeng Tuner, try another model')
             return
 
         if self.tuner_type == 'Grid':
@@ -182,12 +179,10 @@ class DevinMengTuner:
         self.curr_metrics_dict['Root Mean Squared Error'] = curr_rmse
         # check if at least one best metrics are recorded
         if not self.best_metrics_dict:
-            print(1)
             self.best_metrics_dict = self.curr_metrics_dict.copy()
             self.best_param_dict = self.curr_param_dict.copy()
             #check if current params perfroms better than best params
         elif self.curr_metrics_dict['R-Squared'] > self.best_metrics_dict['R-Squared']:
-            print(2)
             self.best_metrics_dict = self.curr_metrics_dict.copy()
             self.best_param_dict = self.curr_param_dict.copy()
             self.best_model = copy.deepcopy(self.model)
