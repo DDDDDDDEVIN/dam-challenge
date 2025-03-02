@@ -103,10 +103,7 @@ class DevinMengTuner:
         self._make_dir()
         
         self._check_checkpoint()
-        
-        if self.model_name == 'CB':
-            print('CatBoost is not yet compatiable with DevinMeng Tuner, try another model')
-            return
+
         if self.model_name == 'LB':
             print('CatBoost is not yet compatiable with DevinMeng Tuner, try another model')
             return
@@ -130,6 +127,8 @@ class DevinMengTuner:
         self.total_combination_num = len(param_list)
         # looping through all combinatioons
         for curr_param in param_list:
+            # create now model for current combination
+            model = copy.deepcopy(self.model)
 
             # check if current param is in checkpoint list
             checkpoint_found = 0
@@ -145,11 +144,11 @@ class DevinMengTuner:
                 self.curr_param_dict[param] = curr_param[index]
                 index += 1
             # set current tunable params
-            self.model.set_params(**self.curr_param_dict)
+            model.set_params(**self.curr_param_dict)
             # fit model
-            self.model.fit(self.train_X, self.train_Y)
+            model.fit(self.train_X, self.train_Y)
             # calculate evaluation matrics
-            pred_Y = self.model.predict(self.test_X)
+            pred_Y = model.predict(self.test_X)
             if self.model_type == 'Regression':
                 self._regression_metrics(pred_Y)
             if self.model_type == 'Classification':
