@@ -18,3 +18,5 @@ pip install seaborn==0.12.2
 
 pip install xgboost==1.7.5
 pip install catboost==1.2.7
+
+pip install nltk==3.8.1
